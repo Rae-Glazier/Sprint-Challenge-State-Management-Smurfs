@@ -9,8 +9,11 @@ function Form () {
     })
 
     return(
-        <form onSubmit={e => {
-            axios.post('http://localhost:3333/smurfs', form)
+        <form onSubmit= {e => {
+
+            e.preventDefault();
+
+            axios.post('http://localhost:3333/smurfs', {form})
                 .then(res => {
                     console.log(res)
                 })
@@ -37,7 +40,7 @@ function Form () {
                 onChange={ e => {
                     setForm({
                         ...form,
-                        [e.target.age]: e.target.value
+                        [e.target.name]: e.target.value
                     })
                 }}
             />
@@ -49,7 +52,7 @@ function Form () {
                 onChange={ e => {
                     setForm({
                         ...form,
-                        [e.target.height]: e.target.value
+                        [e.target.name]: e.target.value
                     })
                 }}
             />
