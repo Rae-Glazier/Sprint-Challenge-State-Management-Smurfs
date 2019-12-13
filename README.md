@@ -23,10 +23,29 @@ In this challenge, you are to build a Smurfs village utilizing context or Redux 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+  * It helps with not having to pass state from parent to child through props. With context API we can store data on a context object & get the data in the necessary components. 
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+ 
+  * actions: payloads of info that send data from the a to the store; only source of info for the store
+  * reducers: specifies how an app's state changes in response to the actions that are sent to the store; describes what happened
+  * store: combines/brings together actions & reducers; can only have one store in a redux app
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+  * application state: global; with stores any component in the app can access the application state
+  * component state: local; can only be udpated within the component & can only be passed down to children via props
+  * application state would be good if you have a bigger app that is constantly changing/holding a lot of data
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+  * type of middleware that handles asynch requests inside action-creators; changes action-creators by letting us do asynch api calls
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+
+  * I am still working through understanding them. I think using Redux with React seems pretty fun, and everything is right there and can be organized easily. Boilerplate is a bit much to set up though. 
+
 
 ## Project Set Up
 
