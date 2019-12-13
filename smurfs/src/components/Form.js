@@ -13,7 +13,7 @@ function Form () {
 
             e.preventDefault();
 
-            axios.post('http://localhost:3333/smurfs', {form})
+            axios.post('http://localhost:3333/smurfs', form)
                 .then(res => {
                     console.log(res)
                 })
