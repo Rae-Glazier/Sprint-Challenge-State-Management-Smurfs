@@ -24,8 +24,7 @@ function App () {
     return (
       <SmurfContext.Provider value={smurf}>
         <div className="App">
-          <h1>Please No More Smurfs</h1>
-          
+
          <Form />
          <SmurfList />
 
