@@ -12,57 +12,110 @@ const Smurf = (smurfs, updateSmurfs) => {
     const sInfo = useContext(SmurfContext);
     console.log(smurfs);
     const [smurfEdit, setSmurfEdit] = useState(initialSmurf);
+    const [editing, setEditing] = useState(false);
 
     
 
     const updateSmurfList = () => {
         axios
-            .get('http://localhost:3333/smurfs')
+            .get(`http://localhost:3333/smurfs/`)
             .then(response => {
                 setSmurfEdit(response.data);
             })
             .catch(error => console.log(error.response, 'updateSmurfList'));
     };
 
-    const sEdit = e => {
+    const sEdit = smurf => {
         // e.preventDefualt();
 
         axios 
-            .put(`http://localhost:3333/smurfs/${smurfs.smurf.id}`, smurfEdit)
+            .put(`http://localhost:3333/smurfs/${smurf.id}`, smurfEdit)
             .then(updateSmurfList())
             .catch(error => console.log(error.response, 'edit smurf'))
     }
 
-    const deleteSmurf = () => {
+    const deleteSmurf = (smurf) => {
         axios   
-            .delete(`http://localhost:3333/smurfs/${smurfs.smurf.id}`)
-            .then(updateSmurfList())
-            .catch(error => console.log(error, 'delete'))
+            .delete(`http://localhost:3333/smurfs/${smurf.id}`)
+            .then(response => {
+                console.log(response.data)
+                updateSmurfList(response.data);
+            })
+            .catch(error => console.log(error.response.data, 'delete'))
     }
 
 
     return(
         <div className='SmurfInfo'>
 
-            <ul>
+            <div>
                 {sInfo.map(smurf => {
-                    <li key={smurf.id} onClick= {() => sEdit(smurfs)}>
+                    return(
+                        <div key={smurf.id} onClick= {() => sEdit(smurfs)}>
                         <span>
                             <span className = 'delete' onClick={e => {e.stopPropagation(); deleteSmurf(smurf)}}>
-                                ~delete~
+                                x
                             </span>{''} 
                             {smurf.smurf}
                         </span>
                         <div>
-                            <h3>Name: {smurfs.smurf.name}</h3>
-                            <h4>ID: {smurfs.smurf.id}</h4>
-                            <h4>Age: {smurfs.smurf.age}</h4>
-                            <h4>Height: {smurfs.smurf.height}</h4>
+                            <h3>Name: {smurf.name} </h3>
+                            <h4>ID: {smurf.id} </h4>
+                            <h4>Age: {smurf.age} </h4>
+                            <h4>Height: {smurf.height} </h4>
                         </div>
-                    </li>
+                    </div>
+                    )
                 })}
-            </ul>
+            </div>
             
+
+        {editing && (
+            <form onSubmit={sEdit}>
+                <legend>edit smurf</legend>
+                <label>
+                Name:
+                <input
+                    onChange={e =>
+                    setSmurfEdit({ ...smurfEdit, Name: e.target.value })
+                    }
+                    value={smurfEdit.smurf.name}
+                />
+                </label>
+
+                <label>
+                Age:
+                <input
+                    onChange={e =>
+                        setSmurfEdit({
+                        ...smurfEdit,
+                        Age: e.target.value 
+                    })
+                    }
+                    value={smurfEdit.smurf.age}
+                />
+                </label>
+
+                <label>
+                Height:
+                <input
+                    onChange={e =>
+                        setSmurfEdit({
+                        ...smurfEdit,
+                        Height: e.target.value 
+                    })
+                    }
+                    value={smurfEdit.smurf.height}
+                />
+                </label>
+
+                <div className="button-row">
+                <button type="submit">save</button>
+                <button onClick={() => setEditing(false)}>cancel</button>
+                </div>
+            </form>
+        )}
+
         </div>
     )
 }
