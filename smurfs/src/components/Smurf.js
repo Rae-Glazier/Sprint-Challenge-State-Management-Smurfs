@@ -58,7 +58,7 @@ const Smurf = (smurfs, updateSmurfs) => {
                     return(
                         <div key={smurf.id} onClick= {() => sEdit(smurf)}>
                         
-                        <div>
+                        <div className='details'>
                             <h3> {smurf.name} </h3>
                             {/* <h4>ID: {smurf.id} </h4> */}
                             <h4> {smurf.age} Years Old </h4>
