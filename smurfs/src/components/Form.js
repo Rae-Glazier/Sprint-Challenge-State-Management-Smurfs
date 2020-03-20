@@ -7,16 +7,18 @@ function Form () {
         age: '',
         height: ''
     })
+    
 
     return(
         <div className='form'>
             <form onSubmit= {e => {
 
-// e.preventDefault();
+e.preventDefault();
 
 axios.post('http://localhost:3333/smurfs', form)
     .then(res => {
         console.log(res)
+        setForm(form = [...form, res])
     })
     .catch(err => {
         console.log(err)

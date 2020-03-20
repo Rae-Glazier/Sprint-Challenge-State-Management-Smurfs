@@ -25,60 +25,19 @@ const Smurf = (smurfs, updateSmurfs) => {
             .catch(error => console.log(error.response, 'updateSmurfList'));
     };
 
-    const sEdit = (smurf) => {
-        // e.preventDefualt();
-
-        axios 
-            .put(`http://localhost:3333/smurfs/${smurf.id}`)
-            .then(response => {
-                console.log(response.data)
-                updateSmurfList(response.data)
-            })
-            .catch(error => console.log(error.response, 'edit smurf'))
-
-            
-    }
-
-    const deleteSmurf = (smurf) => {
-        axios   
-            .delete(`http://localhost:3333/smurfs/${smurf.id}`)
-            .then(response => {
-                console.log(response.data)
-                updateSmurfList(response.data);
-            })
-            .catch(error => console.log(error.response.data, 'delete'))
-    }
-
-
     return(
         <div className='SmurfInfo'>
 
             <div>
                 {sInfo.map(smurf => {
                     return(
-                        <div key={smurf.id} onClick= {() => sEdit(smurf)}>
+                        <div key={smurf.id}>
                         
                         <div className='details'>
-                            <h3> {smurf.name} </h3>
-                            {/* <h4>ID: {smurf.id} </h4> */}
+                            <h3> Name:  {smurf.name} </h3>
                             <h4> {smurf.age} Years Old </h4>
                             <h4> {smurf.height} </h4>
                         </div>
-
-                        <span>
-                            <span className = 'delete' onClick={deleteSmurf(smurf)}>
-                                delete
-                            </span>{''} 
-                            {smurf.smurf}
-                        </span>
-                        {/* <br></br>
-                        <span>
-                            <span className = 'edit' onClick={e => {e.stopPropagation(); sEdit(smurf);}}>
-                                edit
-                            </span>{''} 
-                            {smurf.smurf}
-                        </span> */}
-
                     </div>
                     )
                 })}
