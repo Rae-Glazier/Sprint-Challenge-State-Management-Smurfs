@@ -66,7 +66,7 @@ const Smurf = (smurfs, updateSmurfs) => {
                         </div>
 
                         <span>
-                            <span className = 'delete' onClick={e => {e.stopPropagation(); deleteSmurf(smurf)}}>
+                            <span className = 'delete' onClick={deleteSmurf(smurf)}>
                                 delete
                             </span>{''} 
                             {smurf.smurf}

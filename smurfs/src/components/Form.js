@@ -12,7 +12,7 @@ function Form () {
         <div className='form'>
             <form onSubmit= {e => {
 
-e.preventDefault();
+// e.preventDefault();
 
 axios.post('http://localhost:3333/smurfs', form)
     .then(res => {
