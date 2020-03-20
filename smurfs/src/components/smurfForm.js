@@ -70,8 +70,8 @@ class SmurfForm extends Component {
     }
 }
 
-SmurfForm.PropTypes = {
-    postSmurf: PropTypes.func.isRequired
-};
+// SmurfForm.PropTypes = {
+//     postSmurf: PropTypes.func.isRequired
+// };
 
 export default connect(null, { postSmurf })(SmurfForm);

@@ -32,15 +32,19 @@ class Smurfs extends Component {
     }
 }
 
-Smurfs.PropTypes = {
-    fetchSmurf: PropTypes.func.isRequired,
-    smurfs: PropTypes.array.isRequired,
-    newSmurf: PropTypes.object
-}
+// Smurfs.PropTypes = {
+//     fetchSmurf: PropTypes.func.isRequired,
+//     smurfs: PropTypes.array.isRequired,
+//     newSmurf: PropTypes.object
+// }
 
-const mapStatetoProps = state => ({
+
+const mapStateToProps = state => (
+    {
     smurfs: state.smurfs.items,
     newSmurf: state.smurfs.item,
 });
+
+
 
 export default connect(mapStateToProps, { fetchSmurf })(Smurfs);
