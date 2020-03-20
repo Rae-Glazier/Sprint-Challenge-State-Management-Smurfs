@@ -1,16 +1,37 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import "./App.css";
-class App extends Component {
-  render() {
+import { SmurfContext } from './SmurfContext';
+import SmurfList from './SmurfList';
+import Form  from './Form';
+
+
+function App () {
+
+  const [smurf, setSmurf] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3333/smurfs')
+      .then(res => {
+        console.log(res)
+        setSmurf(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
+
     return (
-      <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your state management version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
-      </div>
+      <SmurfContext.Provider value={smurf}>
+        <div className="App">
+
+         <Form />
+         <SmurfList />
+
+        </div>
+      </SmurfContext.Provider>
     );
-  }
+  
 }
 
 export default App;

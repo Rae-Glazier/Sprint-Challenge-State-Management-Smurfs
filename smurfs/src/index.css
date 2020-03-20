@@ -2,4 +2,26 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: aqua;
+}
+
+.form {
+  margin: 2%;
+}
+
+h1 {
+  color: yellow;
+}
+
+.SmurfInfo {
+  margin: 2% 20%;
+  padding: 1%;
+  background-color: blue;
+  color: aliceblue;
+}
+
+.SmurfInfo .details {
+  padding: 1%;
+  margin: 1%;
+  border: 2px dashed white;
 }
